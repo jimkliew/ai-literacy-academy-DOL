@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Literacy Academy | U.S. Department of Labor</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dol-navy:#002d72;--dol-navy-dark:#001845;--dol-blue:#005ea2;--dol-blue-light:#2378c3;
+  --dol-blue-vivid:#0076d6;--dol-blue-warm:#e1f3f8;--dol-blue-bg:#eff6fb;
+  --fw-dark:#0b2545;--fw-mid:#13315c;--fw-accent:#5eaed5;
+  --g2:#f0f0f0;--g5:#dfe1e2;--g10:#c6cace;--g30:#a9aeb1;--g50:#71767a;--g70:#3d4551;--g90:#1b1b1b;
+  --green:#00a91c;--green-bg:#ecf3ec;--gold:#e5a000;--gold-bg:#fef0c8;--red:#d63e04;--red-bg:#fce4ec;
+  --txt:#1b1b1b;--txt-l:#565c65;--link:#005ea2;--max-w:1024px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:19px}
+body{font-family:'Public Sans',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--txt);background:white;line-height:1.65;overflow-x:hidden}
+
+/* GOV BANNER */
+.gov-ban{background:var(--g2);padding:6px 20px;font-size:.72rem;display:flex;align-items:center;gap:8px;color:var(--txt)}
+.gov-ban img{width:18px;height:12px}
+.gov-ban b{font-weight:600}
+
+/* SITE HEADER */
+.site-hd{background:white;border-bottom:1px solid var(--g5);padding:12px 24px;display:flex;align-items:center;gap:14px}
+.dol-seal{width:46px;height:46px;border-radius:50%;background:var(--dol-navy);color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.5rem;letter-spacing:.5px;text-transform:uppercase;line-height:1.2;text-align:center;flex-shrink:0}
+.hd-txt .dept{font-size:.7rem;font-weight:600;color:var(--txt-l);letter-spacing:.5px;text-transform:uppercase}
+.hd-txt .title{font-size:1.05rem;font-weight:800;color:var(--dol-navy)}
+
+/* HERO */
+.hero{background:linear-gradient(170deg,var(--dol-navy-dark) 0%,var(--fw-dark) 30%,var(--fw-mid) 65%,#1a4480 100%);padding:70px 24px 80px;text-align:center;position:relative;overflow:hidden;min-height:85vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 25% 85%,rgba(94,174,213,.15) 0%,transparent 55%),radial-gradient(ellipse at 80% 15%,rgba(0,94,162,.12) 0%,transparent 45%);pointer-events:none}
+.hero-c{position:relative;z-index:1;max-width:740px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:30px;padding:6px 20px;font-size:.8rem;color:var(--fw-accent);font-weight:600;margin-bottom:28px;letter-spacing:.3px}
+.hero h1{font-family:'Merriweather',Georgia,serif;font-size:clamp(2.1rem,5.5vw,3.5rem);font-weight:900;color:white;line-height:1.15;margin-bottom:20px}
+.hero h1 span{color:var(--fw-accent)}
+.hero-sub{font-size:clamp(1.05rem,2vw,1.25rem);color:rgba(255,255,255,.82);margin-bottom:36px;max-width:620px;margin-left:auto;margin-right:auto;line-height:1.7}
+.hero-pills{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:40px}
+.hero-pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:30px;padding:8px 20px;font-size:.88rem;color:rgba(255,255,255,.9);font-weight:600}
+.hero-cta{display:inline-flex;align-items:center;gap:10px;background:white;color:var(--dol-navy);font-size:1.15rem;font-weight:800;padding:16px 44px;border-radius:6px;border:none;cursor:pointer;transition:all .25s;letter-spacing:.3px}
+.hero-cta:hover{background:var(--fw-accent);color:white;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+
+/* PROGRESS BAR */
+.pbar{position:sticky;top:0;z-index:1000;background:var(--dol-navy);padding:10px 24px;display:none;border-bottom:3px solid var(--fw-accent)}
+.pbar.show{display:block}
+.pbar-in{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.pbar-l,.pbar-r{display:flex;align-items:center;gap:16px}
+.xpg{display:flex;align-items:center;gap:10px}
+.xpg>span:first-child{font-size:1.2rem}
+.xpt{width:160px;height:14px;background:rgba(255,255,255,.12);border-radius:10px;overflow:hidden}
+.xpf{height:100%;background:linear-gradient(90deg,var(--fw-accent),#8ecae6);border-radius:10px;transition:width 1s ease;width:0%}
+.xpl{font-weight:700;font-size:.88rem;color:var(--fw-accent)}
+.stl{font-weight:700;font-size:.92rem;color:#f4a261}
+.pbadges{display:flex;gap:5px}
+.pb{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.82rem;background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.1);opacity:.3;transition:all .4s}
+.pb.earned{opacity:1;border-color:var(--fw-accent);background:rgba(94,174,213,.15);animation:pop .5s ease}
+@keyframes pop{0%{transform:scale(.3)}60%{transform:scale(1.3)}100%{transform:scale(1)}}
+.pcnt{font-weight:700;font-size:.88rem;color:white}
+
+/* MAIN */
+.main{display:none}.main.show{display:block}
+
+/* OVERVIEW */
+.ov{padding:55px 24px 40px;text-align:center;background:var(--dol-blue-bg);border-bottom:1px solid var(--g5)}
+.ov h2{font-family:'Merriweather',serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:900;color:var(--dol-navy);margin-bottom:8px}
+.ov .lead{font-size:1.08rem;color:var(--txt-l);max-width:640px;margin:0 auto 36px}
+
+/* ROADMAP */
+.roadmap{display:flex;justify-content:center;align-items:stretch;gap:0;flex-wrap:wrap;max-width:860px;margin:0 auto}
+.rm-arr{display:flex;align-items:center;color:var(--g10);font-size:1.3rem;padding:0 6px}
+.rm-n{flex:1 1 130px;max-width:160px;padding:18px 12px;border-radius:8px;text-align:center;cursor:pointer;transition:all .3s;border:2px solid transparent;background:white;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.rm-n.lk{opacity:.4;cursor:not-allowed;filter:grayscale(.5)}
+.rm-n.ac{border-color:var(--dol-blue);box-shadow:0 0 0 3px rgba(0,94,162,.15);transform:translateY(-3px)}
+.rm-n.dn{border-color:var(--green)}
+.rm-ic{font-size:1.7rem;margin-bottom:8px}
+.rm-nm{font-size:.7rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--dol-blue);margin-bottom:2px}
+.rm-tl{font-weight:700;font-size:.88rem;line-height:1.3}
+.rm-st{margin-top:8px;font-size:1rem}
+
+/* MODULE CARDS */
+.msec{max-width:var(--max-w);margin:0 auto;padding:0 24px}
+.mc{margin:32px 0;background:white;border:1px solid var(--g5);border-radius:8px;overflow:hidden;position:relative;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.mc.lk .mc-body{filter:blur(3px);pointer-events:none}
+.mc-lk{display:none;position:absolute;inset:0;background:rgba(255,255,255,.88);backdrop-filter:blur(3px);z-index:50;flex-direction:column;align-items:center;justify-content:center;border-radius:8px}
+.mc.lk .mc-lk{display:flex}
+.mc-lk span{font-size:3rem;margin-bottom:10px}
+.mc-lk p{font-size:1.2rem;font-weight:700;color:var(--txt-l)}
+
+/* Module banner */
+.mc-ban{background:var(--dol-navy);padding:30px 34px 26px;color:white;position:relative}
+.mc-ban::before{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:var(--fw-accent)}
+.mc-ban-in{display:flex;align-items:flex-start;gap:18px}
+.mc-ico{width:60px;height:60px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15)}
+.mc-hd h2{font-family:'Merriweather',serif;font-size:clamp(1.35rem,3vw,1.8rem);font-weight:900;line-height:1.2;margin-bottom:8px}
+.mc-hd p{font-size:1.02rem;color:rgba(255,255,255,.8);line-height:1.65}
+.mc-src{display:inline-block;margin-top:10px;font-size:.72rem;color:rgba(255,255,255,.5);background:rgba(255,255,255,.06);padding:3px 12px;border-radius:4px}
+
+.mc-body{padding:30px 34px}
+
+/* Topics */
+.tops{display:flex;flex-direction:column;gap:14px;margin-bottom:24px}
+.tp{display:flex;align-items:flex-start;gap:16px;padding:20px 22px;border-radius:8px;border:1px solid var(--g5);background:white;transition:all .25s}
+.tp:hover{border-color:var(--dol-blue);box-shadow:0 4px 16px rgba(0,94,162,.08);transform:translateY(-1px)}
+.tp-ic{width:48px;height:48px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;background:var(--dol-blue-bg)}
+.tp-tx h3{font-size:1.12rem;font-weight:700;margin-bottom:4px;color:var(--dol-navy)}
+.tp-tx p{font-size:1rem;color:var(--txt-l);line-height:1.65}
+.tp-ct{font-size:.72rem;color:var(--g30);margin-top:6px;display:block;font-weight:600}
+
+/* Flip cards */
+.flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin:22px 0}
+.flip{perspective:800px;height:165px;cursor:pointer}
+.flip-in{width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d;position:relative}
+.flip.fl .flip-in{transform:rotateY(180deg)}
+.flip-f,.flip-b{position:absolute;inset:0;backface-visibility:hidden;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;text-align:center}
+.flip-f{background:var(--dol-blue-bg);border:2px solid var(--g5)}
+.flip-f .fe{font-size:1.8rem;margin-bottom:8px}
+.flip-f .fl-l{font-weight:700;font-size:.95rem;color:var(--dol-navy)}
+.flip-f .fh{font-size:.72rem;color:var(--g50);margin-top:6px}
+.flip-b{background:var(--dol-navy);color:white;transform:rotateY(180deg);border:2px solid var(--dol-navy)}
+.flip-b p{font-size:.92rem;line-height:1.5}
+
+/* Bar chart */
+.cht{background:var(--g2);border-radius:8px;padding:22px;margin:22px 0;max-width:520px}
+.cht h4{font-size:1rem;font-weight:700;color:var(--dol-navy);text-align:center;margin-bottom:16px}
+.br{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.br-l{width:105px;font-size:.8rem;font-weight:700;text-align:right;flex-shrink:0}
+.br-t{flex:1;height:22px;background:var(--g5);border-radius:4px;overflow:hidden}
+.br-f{height:100%;border-radius:4px;transition:width 1.5s cubic-bezier(.4,0,.2,1);width:0%;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-size:.7rem;font-weight:800;color:white}
+
+/* Donut */
+.dnt-w{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap}
+.dnt-svg{width:130px;height:130px}
+.lgnd{display:flex;flex-direction:column;gap:5px}
+.lgnd-i{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600}
+.lgnd-d{width:12px;height:12px;border-radius:3px;flex-shrink:0}
+
+/* Try-it box */
+.try{background:var(--gold-bg);border-left:5px solid var(--gold);border-radius:0 8px 8px 0;padding:22px 26px;margin:22px 0}
+.try h4{font-size:1.08rem;font-weight:800;color:#7a4100;margin-bottom:6px}
+.try p{font-size:1rem;color:#5e3a00;line-height:1.65}
+
+/* QUIZ */
+.qa{background:var(--dol-blue-bg);border-radius:8px;padding:28px 24px;border:1px solid #d0e5f5;margin-top:6px}
+.qa-hd{text-align:center;margin-bottom:22px}
+.qa-hd h3{font-family:'Merriweather',serif;font-size:1.4rem;font-weight:900;color:var(--dol-navy);margin-bottom:4px}
+.qa-hd p{font-size:.92rem;color:var(--txt-l)}
+.qc{background:white;border-radius:8px;padding:22px;margin-bottom:14px;border:2px solid transparent;box-shadow:0 1px 4px rgba(0,0,0,.04);transition:all .3s}
+.qc.rt{border-color:var(--green);background:var(--green-bg)}
+.qc.wr{border-color:var(--red);background:var(--red-bg)}
+.qn{font-size:.78rem;font-weight:700;color:var(--dol-blue);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.qt{font-size:1.12rem;font-weight:700;line-height:1.5;margin-bottom:14px}
+.qo-l{display:flex;flex-direction:column;gap:8px}
+.qo{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:6px;border:2px solid var(--g5);cursor:pointer;transition:all .2s;font-size:1.02rem;font-weight:500;background:white}
+.qo:hover:not(.lk){border-color:var(--dol-blue);background:var(--dol-blue-bg)}
+.qo.pk{border-color:var(--dol-blue);background:#dbeafe;font-weight:700}
+.qo.cs{border-color:var(--green);background:var(--green-bg)}
+.qo.ws{border-color:var(--red);background:var(--red-bg)}
+.qo.lk{cursor:default}
+.qd{width:24px;height:24px;border-radius:50%;border:2.5px solid var(--g10);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:800;transition:all .2s}
+.qo.pk .qd{border-color:var(--dol-blue);background:var(--dol-blue);color:white}
+.qo.cs .qd{border-color:var(--green);background:var(--green);color:white}
+.qo.ws .qd{border-color:var(--red);background:var(--red);color:white}
+.qfb{margin-top:10px;padding:12px 16px;border-radius:6px;font-size:.92rem;font-weight:600;display:none;line-height:1.5}
+.qfb.sh{display:block}
+.qfb.gd{background:#d1fae5;color:#065f46}
+.qfb.bd{background:#fee2e2;color:#991b1b}
+.qbtn{display:block;width:100%;max-width:360px;margin:24px auto 0;padding:14px;font-size:1.1rem;font-weight:800;border:none;border-radius:6px;cursor:pointer;transition:all .3s;color:white;background:var(--dol-blue);font-family:inherit}
+.qbtn:hover:not(:disabled){background:var(--dol-navy);transform:translateY(-2px)}
+.qbtn:disabled{opacity:.35;cursor:not-allowed}
+.qr{text-align:center;padding:22px;display:none}
+.qr.sh{display:block;animation:fu .4s ease}
+@keyframes fu{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.qr-i{font-size:3.5rem;margin-bottom:8px}
+.qr h3{font-family:'Merriweather',serif;font-size:1.5rem;font-weight:900;margin-bottom:6px;color:var(--dol-navy)}
+.qr p{font-size:1.02rem;color:var(--txt-l);margin-bottom:6px}
+.xpp{font-size:1.35rem;font-weight:800;color:var(--gold)}
+.nbtn{display:inline-block;margin-top:16px;padding:12px 36px;font-size:1.08rem;font-weight:800;border:none;border-radius:6px;cursor:pointer;color:white;background:var(--green);transition:all .3s;font-family:inherit}
+.nbtn:hover{background:#007712;transform:translateY(-2px)}
+
+/* BADGE MODAL */
+.bov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.bov.sh{display:flex}
+.bmod{background:white;border-radius:12px;padding:40px 44px;text-align:center;max-width:420px;width:92%;box-shadow:0 20px 60px rgba(0,0,0,.2);animation:mp .5s cubic-bezier(.34,1.56,.64,1);border-top:5px solid var(--fw-accent)}
+@keyframes mp{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
+.bmod .bm-i{font-size:4.5rem;margin-bottom:12px}
+.bmod h2{font-family:'Merriweather',serif;font-size:1.6rem;font-weight:900;color:var(--dol-navy);margin-bottom:8px}
+.bmod p{font-size:1.02rem;color:var(--txt-l);margin-bottom:20px}
+.bm-c{padding:10px 32px;font-size:1.02rem;font-weight:700;border:none;border-radius:6px;background:var(--dol-blue);color:white;cursor:pointer;transition:all .3s;font-family:inherit}
+.bm-c:hover{background:var(--dol-navy)}
+
+/* COMPLETION */
+.comp{display:none;padding:50px 24px;max-width:700px;margin:0 auto;text-align:center}
+.comp.sh{display:block;animation:fu .6s ease}
+.cc{background:white;border-radius:12px;padding:44px 36px;box-shadow:0 8px 40px rgba(0,94,162,.1);border-top:5px solid var(--fw-accent)}
+.cc .trp{font-size:4.5rem;margin-bottom:12px}
+.cc h2{font-family:'Merriweather',serif;font-size:2rem;font-weight:900;color:var(--dol-navy);margin-bottom:10px}
+.cc .dsc{font-size:1.08rem;color:var(--txt-l);line-height:1.65;margin-bottom:22px}
+.fbs{display:flex;justify-content:center;gap:12px;margin:18px 0}
+.fb{width:52px;height:52px;border-radius:50%;border:3px solid var(--fw-accent);display:flex;align-items:center;justify-content:center;font-size:1.5rem;background:var(--dol-blue-bg)}
+.fxp{font-size:1.5rem;font-weight:800;color:var(--gold);margin:14px 0}
+.lb{margin-top:24px;background:var(--g2);border-radius:8px;padding:20px}
+.lb h3{font-size:1.2rem;font-weight:800;color:var(--dol-navy);margin-bottom:10px}
+.lb-r{display:flex;justify-content:space-between;padding:8px 14px;font-size:.92rem;font-weight:600;border-radius:4px}
+.lb-r:nth-child(even){background:white}
+.lb-r.you{color:var(--dol-blue);font-weight:800}
+.sft{margin-top:18px;font-size:.75rem;color:var(--g50)}
+
+/* FOOTER */
+footer{background:var(--dol-navy-dark);padding:40px 24px;text-align:center;border-top:4px solid var(--fw-accent)}
+footer p{color:rgba(255,255,255,.5);font-size:.8rem;line-height:1.7}
+footer a{color:var(--fw-accent);text-decoration:none}
+
+/* CONFETTI */
+.cfb{position:fixed;inset:0;pointer-events:none;z-index:99999}
+.cf{position:absolute;top:-12px;animation:cfd 3s ease-in forwards}
+@keyframes cfd{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(105vh) rotate(720deg);opacity:0}}
+
+/* FADE IN */
+.fi{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.fi.vis{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+html{font-size:17px}
+.mc-ban{padding:24px 20px 22px}.mc-body{padding:24px 20px}
+.mc-ban-in{flex-direction:column}.tp{flex-direction:column;gap:10px}
+.br-l{width:75px;font-size:.72rem}
+.rm-arr{display:none}.rm-n{flex:1 1 100px;max-width:130px}
+.flips{grid-template-columns:1fr 1fr}
+.pbar-in{justify-content:center}.xpt{width:110px}
+}
+@media(max-width:480px){
+html{font-size:16px}.flips{grid-template-columns:1fr}.rm-n{flex:1 1 80px}
+}
+</style>
+</head>
+<body>
+
+<div class="gov-ban">
+  <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='12'%3E%3Crect width='18' height='12' fill='%23bf0a30'/%3E%3Crect width='18' height='.92' y='0' fill='white'/%3E%3Crect width='18' height='.92' y='1.85' fill='white'/%3E%3Crect width='18' height='.92' y='3.69' fill='white'/%3E%3Crect width='18' height='.92' y='5.54' fill='white'/%3E%3Crect width='18' height='.92' y='7.38' fill='white'/%3E%3Crect width='18' height='.92' y='9.23' fill='white'/%3E%3Crect width='18' height='.92' y='11.08' fill='white'/%3E%3Crect width='7.2' height='6.46' fill='%233c3b6e'/%3E%3C/svg%3E" alt="U.S. flag">
+  <span><b>An official website of the United States government</b></span>
+</div>
+
+
+
+<section class="hero">
+  <div class="hero-c">
+    <div class="hero-badge">🏛️ DOL AI Literacy Framework Training Fun!</div>
+    <h1>Federal<br><span>AI Literacy Academy</span></h1>
+    <p class="hero-sub">Inspired by the U.S. Department of Labor's Artificial Intelligence Literacy Framework — covering the 5 Foundational Content Areas of AI Literacy for every federal employee.</p>
+    <div class="hero-pills">
+      <span class="hero-pill">📚 5 Modules</span>
+      <span class="hero-pill">🏅 Earn Badges</span>
+      <span class="hero-pill">⚡ XP Points</span>
+      <span class="hero-pill">🎯 Quick Quizzes</span>
+    </div>
+    <button class="hero-cta" onclick="begin()">Start Learning →</button>
+  </div>
+</section>
+
+<div class="pbar" id="pbar">
+  <div class="pbar-in">
+    <div class="pbar-l">
+      <div class="xpg"><span>⚡</span><div class="xpt"><div class="xpf" id="xf"></div></div><span class="xpl" id="xl">0 XP</span></div>
+      <span class="stl" id="sl">🔥 0</span>
+    </div>
+    <div class="pbar-r">
+      <div class="pbadges" id="pbs"><div class="pb" id="pb0">🧠</div><div class="pb" id="pb1">🔍</div><div class="pb" id="pb2">🎯</div><div class="pb" id="pb3">✅</div><div class="pb" id="pb4">🛡️</div></div>
+      <span class="pcnt" id="pc">0 / 5</span>
+    </div>
+  </div>
+</div>
+
+<div class="main" id="main">
+  <section class="ov fi">
+    <h2>What You'll Learn</h2>
+    <p class="lead">Five short lessons covering the DOL's 5 Foundational Content Areas of AI Literacy — the essential knowledge every federal worker needs for today's AI-powered workplace.</p>
+    <div class="roadmap" id="rm"></div>
+  </section>
+  <div class="msec" id="mods"></div>
+  <div class="comp" id="comp">
+    <div class="cc">
+      <div class="trp">🏆</div>
+      <h2>You're an AI Literacy Champion!</h2>
+      <p class="dsc">Congratulations! You've completed all five foundational content areas of the DOL AI Literacy Framework. You now understand how AI works, how to use it, and how to do so responsibly.</p>
+      <div class="fbs" id="fbs"></div>
+      <div class="fxp">Total: <span id="fxp">0</span> XP ⚡</div>
+      <div class="lb"><h3>🏅 Leaderboard</h3>
+        <div class="lb-r"><span>🥇 A. Johnson, DOL/ETA</span><span>500 XP</span></div>
+        <div class="lb-r you"><span>🥈 You!</span><span id="lxp">0</span></div>
+        <div class="lb-r"><span>🥉 M. Chen, DOL/OSHA</span><span>480 XP</span></div>
+        <div class="lb-r"><span>4. S. Patel, DOL/WHD</span><span>460 XP</span></div>
+        <div class="lb-r"><span>5. R. Garcia, DOL/BLS</span><span>440 XP</span></div>
+      </div>
+      <p class="sft">Source: U.S. DOL AI Literacy Framework (Attachment I), TEGL 03-25, DOL 2025 AI Strategy & Compliance Plan</p>
+    </div>
+  </div>
+</div>
+
+<div class="bov" id="bov">
+  <div class="bmod">
+    <div class="bm-i" id="bmi">🏅</div>
+    <h2 id="bmt">Badge Earned!</h2>
+    <p id="bmd">Great job!</p>
+    <button class="bm-c" onclick="closeBM()">Continue →</button>
+  </div>
+</div>
+
+<footer>
+  <p>Federal AI Literacy Academy — Inspired by the <a href="https://www.dol.gov/newsroom/releases/eta/eta20260213" target="_blank">U.S. Department of Labor's AI Literacy Framework</a><br>
+  Content from: DOL AI Literacy Framework (Attachment I) · TEGL 03-25 · DOL 2025 AI Strategy · DOL 2025 Compliance Plan · America's AI Action Plan<br><br>
+  U.S. Department of Labor · 200 Constitution Ave NW, Washington, DC 20210</p>
+</footer>
+
+<script>
+const M=[
+{t:"Understand AI Principles",ic:"🧠",bi:"🧠",bn:"AI Foundations",intro:"Let's start with the basics! You don't need to be a tech expert — just learn enough to feel confident about what AI is and how it works.",iS:"DOL AI Literacy Framework, Attachment I, p. I-5",
+tops:[{e:"🎲",t:"AI Finds Patterns",d:"AI works by spotting patterns in huge amounts of data. It doesn't actually \"think\" — it predicts the most likely answer. That's why you can ask the same question twice and get slightly different answers!",s:"Attachment I, p. I-5"},{e:"🎨",t:"AI Can Do Many Things",d:"Today's AI can write text, analyze numbers, recognize images, and understand speech. These different skills are called \"modalities\" — knowing what AI can and can't do helps you use it better.",s:"Attachment I, p. I-5"},{e:"📦",t:"How AI Learns vs. How It Answers",d:"\"Training\" is when AI learns from millions of examples. \"Inference\" is when it uses that learning to answer you right now. Think of it like studying for a test (training) vs. taking the test (inference).",s:"Attachment I, p. I-5"},{e:"🚨",t:"AI Can Be Confidently Wrong",d:"Sometimes AI gives an answer that sounds perfect but is totally made up — these are called \"hallucinations.\" Always double-check important outputs, just like you'd verify info from any source.",s:"Attachment I, p. I-5"},{e:"👤",t:"People Are Still in Charge",d:"Every AI tool was designed by humans who made choices about what data to use and what goals to set. AI is powerful, but YOUR judgment, experience, and common sense are what matter most.",s:"Attachment I, p. I-5"}],
+flips:[{f:"🎲 Pattern",b:"AI spots statistical patterns in data — it predicts, it doesn't truly \"know\""},{f:"🧪 Training",b:"AI learns from huge datasets — like studying millions of textbooks at once"},{f:"⚡ Inference",b:"When AI uses its training to answer YOUR question in real time"},{f:"👻 Hallucination",b:"When AI confidently gives you a wrong or made-up answer"}],
+chart:{t:"What AI Can Do Today",bars:[{l:"Write Text",p:90,c:"#005ea2"},{l:"Analyze Data",p:85,c:"#0076d6"},{l:"Read Images",p:75,c:"#2378c3"},{l:"Understand Speech",p:70,c:"#5eaed5"},{l:"True Reasoning",p:25,c:"#8ecae6"}]},
+tryIt:{t:"Try This at Your Desk!",tx:"Pick a simple task you do every day — like drafting an email or summarizing a report. Try it with an AI tool, then compare the result to how you'd normally do it. Notice where AI saves time and where you still need your own expertise! (Attachment I, p. I-2)"},
+quiz:[{q:"How does AI come up with its answers?",o:["It follows exact rules like a calculator","It finds patterns in data and predicts the best response","It searches the internet every time","It copies from a secret database"],a:1,g:"Exactly right! AI identifies statistical patterns in data to generate responses. (Attachment I, p. I-5)",b:"Not quite — AI works by identifying statistical patterns in data to predict the most likely response. (Attachment I, p. I-5)"},{q:"What's it called when AI gives a confident but wrong answer?",o:["A glitch","A bug","A hallucination","An error code"],a:2,g:"You got it! The DOL calls these \"hallucinations\" — confident but incorrect outputs. Always double-check! (Attachment I, p. I-5)",b:"The DOL framework calls these \"hallucinations\" — when AI produces confident but incorrect outputs. (Attachment I, p. I-5)"},{q:"According to the DOL, why is human oversight important with AI?",o:["Because AI will replace all workers eventually","Because every AI reflects human decisions and needs human judgment","Because AI can't run without someone watching 24/7","Because it's a legal requirement for every federal task"],a:1,g:"Exactly! Every AI system reflects human decisions about data and goals — your judgment is still essential. (Attachment I, p. I-5)",b:"The DOL says every AI system reflects human decisions about data, goals, and parameters — that's why human judgment matters. (Attachment I, p. I-5)"}]},
+
+{t:"Explore AI Uses",ic:"🔍",bi:"🔍",bn:"AI Explorer",intro:"Now that you know what AI is, let's look at how people are actually using it at work — including right here at the Department of Labor!",iS:"DOL AI Literacy Framework, Attachment I, p. I-5",
+tops:[{e:"⚡",t:"Speed Up Everyday Tasks",d:"Use AI to draft documents, build presentation outlines, or crunch through reports faster. It's like having a super-fast assistant for your routine work — you still review and finalize everything.",s:"Attachment I, p. I-5"},{e:"📖",t:"Get Quick Answers & Research",d:"AI can answer questions, pull up background information, or create custom learning materials for your specific needs. Think of it as a research helper that's always available.",s:"Attachment I, p. I-5"},{e:"🎨",t:"Creative Brainstorming",d:"Need ideas for a presentation, report title, or communication plan? AI can generate initial drafts and creative options that you then pick from and improve.",s:"Attachment I, p. I-5"},{e:"🔧",t:"Specialized Work Tasks",d:"AI can write code, transcribe recordings, translate languages, automate data entry, and organize schedules. DOL already uses AI for audio transcription, language translation, and automated letter generation.",s:"Attachment I, p. I-6 & DOL 2025 AI Strategy, p. 1"},{e:"📊",t:"Help with Decision-Making",d:"AI can generate recommendations, risk assessments, or forecasts. DOL uses custom AI models for occupational coding, record matching, and predictive modeling.",s:"Attachment I, p. I-6 & DOL 2025 AI Strategy, p. 1"}],
+flips:[{f:"📝 Drafting",b:"AI writes first drafts of emails, memos, and reports — you edit and finalize"},{f:"🔬 Research",b:"AI summarizes long documents and finds key information fast"},{f:"🌐 Translation",b:"DOL uses AI for real-time language translation across the department"},{f:"📈 Predictions",b:"AI helps forecast trends and match data for better decisions"}],
+chart:{t:"How DOL Uses AI Today",type:"donut",slices:[{l:"Document Analysis",p:30,c:"#005ea2"},{l:"Search & Chatbots",p:25,c:"#2378c3"},{l:"Data & Coding Models",p:20,c:"#5eaed5"},{l:"Transcription",p:15,c:"#8ecae6"},{l:"Dev & Modernization",p:10,c:"#b7d9ed"}]},
+tryIt:{t:"DOL in Action!",tx:"DOL is exploring AI headsets for field inspectors that capture video, process inspection data, and draft documentation for human review. Think about your own role — what's one task where AI could save you 30 minutes a day? (DOL 2025 AI Strategy, p. 1)"},
+quiz:[{q:"Which of these is a real way DOL uses AI right now?",o:["AI makes hiring decisions for the department","Secure AI assistants help staff analyze documents","AI runs all DOL social media accounts","AI replaces inspectors in the field"],a:1,g:"That's right! DOL has deployed secure GenAI assistants for document analysis, summarization, and search. (DOL 2025 AI Strategy, p. 1)",b:"DOL actually uses secure GenAI assistants and AI-enabled search tools for document analysis and more. (DOL 2025 AI Strategy, p. 1)"},{q:"What does the DOL framework say about AI and human input?",o:["AI should replace human input wherever possible","Workers should recognize where human input remains essential","Only IT staff need to worry about human oversight","AI doesn't need human input once it's trained"],a:1,g:"The framework helps workers recognize when to use AI effectively AND where human input remains essential. (Attachment I, p. I-5)",b:"The DOL says exploration helps workers recognize 'when and how to apply AI effectively, and where human input remains essential.' (Attachment I, p. I-5)"},{q:"What's one benefit of using AI as a 'productivity tool'?",o:["It eliminates the need for teamwork","It lets workers move more efficiently through common tasks","It guarantees 100% accuracy","It replaces the need for training"],a:1,g:"Yes! AI helps workers 'move more efficiently through common tasks in a workflow.' But you always review! (Attachment I, p. I-5)",b:"DOL says AI productivity tools allow workers to 'move more efficiently through common tasks in a workflow.' (Attachment I, p. I-5)"}]},
+
+{t:"Direct AI Effectively",ic:"🎯",bi:"🎯",bn:"Prompt Pro",intro:"AI is only as good as what you tell it! This module teaches you how to talk to AI in ways that get you the best results — no coding required.",iS:"DOL AI Literacy Framework, Attachment I, p. I-6",
+tops:[{e:"🖼️",t:"Set the Scene (Contextual Framing)",d:"Tell AI who the audience is, what tone you want, and what your goal is. The more context you provide, the better the result — like briefing a new coworker.",s:"Attachment I, p. I-6"},{e:"✍️",t:"Write Clear Prompts",d:"Be specific! Use step-by-step instructions and tell AI exactly what format you want. DOL now includes prompting skills in its official competency model.",s:"Attachment I, p. I-6 & TEGL 03-25, p. 4"},{e:"📎",t:"Give AI the Right Information",d:"Include relevant data, examples, or reference documents. The better the input, the better the output — just like cooking with better ingredients makes a better meal!",s:"Attachment I, p. I-6"},{e:"🔄",t:"Keep Improving (Iterate!)",d:"Don't stop at the first answer! Ask follow-up questions, request changes, or try a different angle. The best AI users treat it as a conversation, not a one-shot question.",s:"Attachment I, p. I-6"},{e:"🎯",t:"Be Specific, Not Vague",d:"Vague prompts get vague answers. Word choice and clarity directly affect the quality of what AI gives back. If you wouldn't accept a vague question from a colleague, don't give one to AI!",s:"Attachment I, p. I-6"}],
+flips:[{f:"❌ Vague Prompt",b:"\"Write something about our policy\" → AI guesses what you want and often misses"},{f:"✅ Great Prompt",b:"\"Write a 200-word summary of our telework policy for new hires, friendly tone, bullet points\""},{f:"🔄 Iteration",b:"\"Good start — now make it shorter, add a welcome message, and include the deadline\""},{f:"📋 Format",b:"Tell AI: \"Give me a table with 3 columns\" or \"Use numbered steps\" for structured output"}],
+chart:{t:"How Prompt Quality Affects AI Output",bars:[{l:"Vague Prompt",p:25,c:"#d63e04"},{l:"Basic Prompt",p:50,c:"#e5a000"},{l:"Detailed Prompt",p:80,c:"#5eaed5"},{l:"Prompt + Context",p:92,c:"#0076d6"},{l:"Prompt + Iterate",p:98,c:"#005ea2"}]},
+tryIt:{t:"Prompt Challenge!",tx:"Try this: Ask AI to 'write an email' — then ask again with full context: 'Write a 150-word email to my team announcing Tuesday's AI training session, room 205B, 2pm EST, lunch provided. Keep it upbeat.' Compare the two results! (Based on Attachment I, p. I-6)"},
+quiz:[{q:"What does 'contextual framing' mean when using AI?",o:["Adding borders to AI-generated images","Giving AI background info like audience, tone, and goals","Only using AI for framing policy documents","Letting AI decide the best context on its own"],a:1,g:"Give AI the background info it needs — audience, tone, goals — for much better results. (Attachment I, p. I-6)",b:"Contextual framing means providing background information, audience, tone, or goals to shape the AI's response. (Attachment I, p. I-6)"},{q:"What should you do if AI's first answer isn't quite right?",o:["Give up and do it yourself","Submit a complaint to the AI company","Iterate — ask follow-up questions to refine it","Accept it since AI knows best"],a:2,g:"Yes! The DOL says effective users treat AI as an ongoing conversation — iterate until you get what you need. (Attachment I, p. I-6)",b:"The DOL says to iterate: use follow-up prompts to 'clarify, refine, or reframe results.' (Attachment I, p. I-6)"},{q:"The DOL's Competency Model now includes which AI skill?",o:["Building AI from scratch","Using appropriate prompting techniques to generate content","Replacing coworkers with AI","Programming in Python"],a:1,g:"Correct! The DOL added 'use appropriate prompting techniques to generate needed content' to its Building Blocks Model. (TEGL 03-25, p. 4)",b:"TEGL 03-25 added 'use appropriate prompting techniques to generate needed content' to the competency model. (TEGL 03-25, p. 4)"}]},
+
+{t:"Evaluate AI Outputs",ic:"✅",bi:"✅",bn:"Quality Checker",intro:"AI can be fast and helpful — but it's not always right. This module teaches you how to check AI's work like a pro, so you stay in control.",iS:"DOL AI Literacy Framework, Attachment I, p. I-7",
+tops:[{e:"🔍",t:"Check the Facts",d:"Always cross-check AI-generated info against trusted sources. AI can make things up (remember hallucinations?). If it's important, verify it — just like you'd fact-check any other source.",s:"Attachment I, p. I-7"},{e:"📋",t:"Is It Complete and Clear?",d:"Read through the output carefully. Does it fully answer your question? Is it clear enough for your audience? A half-finished or confusing AI output can be worse than no output at all.",s:"Attachment I, p. I-7"},{e:"🧩",t:"Spot Missing Pieces",d:"Look for gaps, skipped steps, or faulty logic. AI sometimes misses important details or makes reasoning errors. Your critical thinking is the safety net.",s:"Attachment I, p. I-7"},{e:"🎯",t:"Does It Fit Your Goal?",d:"Step back and ask: does this actually do what I needed? Even if the output is well-written, it might miss the point. Make sure it aligns with your actual purpose.",s:"Attachment I, p. I-7"},{e:"🧠",t:"Add Your Expertise",d:"Layer in your own knowledge, experience, and judgment. YOU know your job, your audience, and your context better than any AI. Your expertise transforms a good output into a great final product.",s:"Attachment I, p. I-7"}],
+flips:[{f:"✅ Accurate?",b:"Cross-check facts, dates, names, and claims against trusted sources"},{f:"📊 Complete?",b:"Does it fully answer the question? Is anything missing?"},{f:"🧠 Makes Sense?",b:"Check for logical errors, skipped steps, or faulty assumptions"},{f:"🎯 On Target?",b:"Does it actually accomplish what you needed for your specific task?"}],
+chart:{t:"Your AI Output Checklist",bars:[{l:"Facts Verified",p:100,c:"#005ea2"},{l:"Complete Answer",p:100,c:"#0076d6"},{l:"No Logic Gaps",p:100,c:"#2378c3"},{l:"Fits My Goal",p:100,c:"#5eaed5"},{l:"Expertise Added",p:100,c:"#8ecae6"}]},
+tryIt:{t:"Be the Quality Gate!",tx:"The DOL's updated Competency Model now requires workers to 'assess the provenance of content that may have been generated or modified by AI tools.' Before you share any AI output, run this check: Is it accurate? Complete? Makes sense? Fits my goal? What would I add? (TEGL 03-25, p. 4)"},
+quiz:[{q:"What should you do FIRST when you get an AI-generated output?",o:["Share it with your team immediately","Cross-check it against trusted sources","Delete it and start over","Assume it's correct if it sounds confident"],a:1,g:"Right! Always verify AI outputs against trusted sources — confidence doesn't equal accuracy. (Attachment I, p. I-7)",b:"The DOL says workers must 'cross-check AI-generated outputs against trusted sources' first. (Attachment I, p. I-7)"},{q:"Who is ultimately responsible for work that used AI?",o:["The AI system","The IT department","You — the person who used the AI","The AI company"],a:2,g:"The DOL is clear: workers remain responsible for their decisions and outputs, even when AI helped. (Attachment I, p. I-7)",b:"The DOL says workers remain in control and responsible for decisions and outputs made with AI. (Attachment I, p. I-7)"},{q:"What new competency did DOL add about evaluating AI content?",o:["Building custom AI evaluation tools","Assessing whether content may have been generated by AI","Banning all AI use in your office","Rating AI tools on a five-star scale"],a:1,g:"Yes! The DOL now includes assessing content that 'may have been generated or modified by AI tools.' (TEGL 03-25, p. 4)",b:"The DOL competency model now includes assessing 'content that may have been generated or modified by AI tools.' (TEGL 03-25, p. 4)"}]},
+
+{t:"Use AI Responsibly",ic:"🛡️",bi:"🛡️",bn:"Responsible Champion",intro:"With great AI power comes great responsibility! This final module covers how to use AI safely, ethically, and in line with federal rules.",iS:"DOL AI Literacy Framework, Attachment I, p. I-7",
+tops:[{e:"🔒",t:"Protect Sensitive Information",d:"Never put personal data (PII), classified info, or confidential details into public AI tools. DOL has built its own secure, private AI tools for staff — always use your agency's approved tools.",s:"Attachment I, p. I-7 & DOL 2025 Compliance Plan, p. 1, 8"},{e:"📜",t:"Follow Your Agency's Rules",d:"Every agency has policies about AI use. Know your organization's guidelines — what tools are approved, what data you can use, and what's off-limits. DOL's Competency Model now includes adhering to federal law regarding AI use.",s:"Attachment I, p. I-7 & TEGL 03-25, p. 4"},{e:"🚫",t:"Don't Misuse AI",d:"AI shouldn't be used for plagiarism, impersonation, creating misleading content, or anything harmful. If you see AI being misused, report it through your agency's channels.",s:"Attachment I, p. I-7"},{e:"⚖️",t:"Higher Stakes = More Caution",d:"A quick draft email? Lower risk. A policy recommendation affecting thousands of people? Much higher stakes — apply more scrutiny. Match your review to how important the task is.",s:"Attachment I, p. I-7"},{e:"✋",t:"You're Always Accountable",d:"AI is a tool — you're the person responsible for what comes out. Never treat AI responses as final without your review. You own the work that has your name on it, period.",s:"Attachment I, p. I-7 & TEGL 03-25, p. 4"}],
+flips:[{f:"🔒 Privacy",b:"Never enter PII, SSNs, medical data, or classified info into AI tools"},{f:"✅ Approved Tools",b:"DOL built secure, private AI assistants — use those, not public tools"},{f:"⚖️ Risk Level",b:"Quick draft email = low scrutiny. Policy decision = high scrutiny"},{f:"✋ Accountability",b:"YOUR name is on the output. Always review before sharing."}],
+chart:{t:"Risk Levels — Match Your Review Effort",bars:[{l:"Quick Draft",p:30,c:"#00a91c"},{l:"Team Email",p:45,c:"#6dad4a"},{l:"Public Report",p:70,c:"#e5a000"},{l:"Policy Analysis",p:85,c:"#d63e04"},{l:"Legal/Safety",p:100,c:"#b50909"}]},
+tryIt:{t:"Safety Check!",tx:"DOL advises against using publicly available GenAI tools because they risk exposing government information. Instead, DOL built secure, private AI instances for staff. Before using any AI tool, ask: Is this tool approved? Am I sharing anything sensitive? Have I reviewed the output? (DOL 2025 Compliance Plan, p. 1)"},
+quiz:[{q:"What does DOL recommend instead of public AI tools?",o:["Not using AI at all","Using secure, private AI tools built for DOL staff","Each employee buying their own subscription","Only using AI on personal devices"],a:1,g:"Correct! DOL built secure, private AI instances for staff — always use approved tools. (DOL 2025 Compliance Plan, p. 1)",b:"DOL recommends its own secure, private AI instances instead of publicly available GenAI tools. (DOL 2025 Compliance Plan, p. 1)"},{q:"Who is accountable for AI-assisted work outputs?",o:["The AI model","The IT security team","The worker who used the AI","Nobody — AI outputs aren't official"],a:2,g:"Yes! You are always responsible for the decisions and outputs you produce, even when AI helped. (Attachment I, p. I-7)",b:"The DOL framework is clear: workers remain responsible for decisions and outputs made with AI tools. (Attachment I, p. I-7)"},{q:"When should you apply the MOST review to AI outputs?",o:["When you're in a hurry","When the output is short","In higher-stakes settings like policy or legal work","Only on Mondays"],a:2,g:"Right! Higher stakes mean more scrutiny. (Attachment I, p. I-7)",b:"The DOL says to 'apply greater scrutiny or caution in higher-stakes settings.' (Attachment I, p. I-7)"}]}
+];
+
+let S={xp:0,streak:0,done:[],ans:{},sub:{}};
+try{const v=localStorage.getItem('dolAI3');if(v)S={...S,...JSON.parse(v)}}catch(e){}
+function save(){try{localStorage.setItem('dolAI3',JSON.stringify(S))}catch(e){}}
+function act(){for(let i=0;i<M.length;i++)if(!S.done.includes(i))return i;return M.length}
+
+function begin(){document.getElementById('pbar').classList.add('show');document.getElementById('main').classList.add('show');document.getElementById('main').scrollIntoView({behavior:'smooth'});buildAll()}
+
+function buildAll(){buildRM();buildMods();updBar();obsFI();animBars()}
+
+function buildRM(){const r=document.getElementById('rm');let h='';M.forEach((m,i)=>{if(i>0)h+='<div class="rm-arr">›</div>';const d=S.done.includes(i),a=i===act(),l=i>act();let c='rm-n';if(d)c+=' dn';else if(a)c+=' ac';else if(l)c+=' lk';h+=`<div class="${c}" onclick="${l?'':`sTo(${i})`}"><div class="rm-ic">${m.ic}</div><div class="rm-nm">Module ${i+1}</div><div class="rm-tl">${m.t}</div><div class="rm-st">${d?'✅':l?'🔒':'📖'}</div></div>`});r.innerHTML=h}
+
+function sTo(i){const e=document.getElementById('m'+i);if(e)e.scrollIntoView({behavior:'smooth',block:'start'})}
+
+function buildMods(){const box=document.getElementById('mods');let h='';M.forEach((m,i)=>{
+const lk=i>act()&&!S.done.includes(i),dn=S.done.includes(i);
+let tH=m.tops.map(t=>`<div class="tp fi"><div class="tp-ic">${t.e}</div><div class="tp-tx"><h3>${t.t}</h3><p>${t.d}</p><span class="tp-ct">📄 ${t.s}</span></div></div>`).join('');
+let fH=m.flips.map(f=>`<div class="flip" onclick="this.classList.toggle('fl')"><div class="flip-in"><div class="flip-f"><div class="fe">${f.f.split(' ')[0]}</div><div class="fl-l">${f.f.split(' ').slice(1).join(' ')}</div><div class="fh">tap to flip</div></div><div class="flip-b"><p>${f.b}</p></div></div></div>`).join('');
+let cH='';
+if(m.chart.type==='donut'){let tot=m.chart.slices.reduce((a,s)=>a+s.p,0),off=0;let cir=m.chart.slices.map(s=>{const d=(s.p/tot)*283,g=283-d,o=off;off+=d;return`<circle cx="50" cy="50" r="45" fill="none" stroke="${s.c}" stroke-width="10" stroke-dasharray="${d} ${g}" stroke-dashoffset="${-o}"/>`}).join('');let lg=m.chart.slices.map(s=>`<div class="lgnd-i"><div class="lgnd-d" style="background:${s.c}"></div>${s.l} (${s.p}%)</div>`).join('');
+cH=`<div class="cht fi"><h4>${m.chart.t}</h4><div class="dnt-w"><svg class="dnt-svg" viewBox="0 0 100 100">${cir}</svg><div class="lgnd">${lg}</div></div></div>`}
+else{let bH=m.chart.bars.map(b=>`<div class="br"><div class="br-l">${b.l}</div><div class="br-t"><div class="br-f" data-p="${b.p}" style="background:${b.c}">${b.p}%</div></div></div>`).join('');cH=`<div class="cht fi"><h4>${m.chart.t}</h4>${bH}</div>`}
+
+let qH=m.quiz.map((q,qi)=>{const k=`${i}-${qi}`,ans=S.ans[k]!==undefined&&S.sub[i],ok=ans&&S.ans[k]===q.a;
+let oH=q.o.map((o,oi)=>{let c='qo';if(ans){c+=' lk';if(oi===q.a)c+=' cs';else if(oi===S.ans[k]&&oi!==q.a)c+=' ws'}return`<div class="${c}" data-m="${i}" data-q="${qi}" data-o="${oi}" onclick="pk(${i},${qi},${oi})"><div class="qd">${ans?(oi===q.a?'✓':(oi===S.ans[k]&&oi!==q.a?'✗':'')):'​'}</div><span>${o}</span></div>`}).join('');
+let fb=ans?`<div class="qfb sh ${ok?'gd':'bd'}">${ok?'✅ '+q.g:'❌ '+q.b}</div>`:'';
+return`<div class="qc ${ans?(ok?'rt':'wr'):''}" id="qc${i}${qi}"><div class="qn">Question ${qi+1} of 3</div><div class="qt">${q.q}</div><div class="qo-l">${oH}</div>${fb}</div>`}).join('');
+
+let rH='';if(S.sub[i]){let cc=m.quiz.reduce((a,q,qi)=>a+(S.ans[`${i}-${qi}`]===q.a?1:0),0);const ps=cc>=2;
+rH=`<div class="qr sh"><div class="qr-i">${ps?'🎉':'📚'}</div><h3>${ps?`Great job! ${cc}/3 correct!`:`${cc}/3 — Keep learning!`}</h3><p>${ps?`You earned the ${m.bn} badge!`:'Review the material and try again.'}</p>${ps?`<div class="xpp">+${cc*30+10} XP ⚡</div>`:''}${ps&&i<M.length-1?`<button class="nbtn" onclick="goN(${i+1})">Next: ${M[i+1].t} →</button>`:''}${ps&&i===M.length-1?`<button class="nbtn" onclick="showC()">🏆 See Your Results!</button>`:''}${!ps?`<button class="nbtn" style="background:var(--dol-blue)" onclick="retry(${i})">Try Again</button>`:''}</div>`}
+
+h+=`<div class="mc ${lk?'lk':''} fi" id="m${i}"><div class="mc-lk"><span>🔒</span><p>Complete Module ${i} first!</p></div>
+<div class="mc-ban"><div class="mc-ban-in"><div class="mc-ico">${m.ic}</div><div class="mc-hd"><h2>Module ${i+1}: ${m.t} ${dn?'✅':''}</h2><p>${m.intro}</p><div class="mc-src">📄 ${m.iS}</div></div></div></div>
+<div class="mc-body"><div class="tops">${tH}</div><div class="flips">${fH}</div>${cH}<div class="try"><h4>💡 ${m.tryIt.t}</h4><p>${m.tryIt.tx}</p></div>
+<div class="qa"><div class="qa-hd"><h3>${m.ic} Knowledge Check</h3><p>Get 2 out of 3 right to earn your badge!</p></div>${qH}${!S.sub[i]?`<button class="qbtn" id="sb${i}" onclick="sub(${i})" disabled>Check My Answers ✏️</button>`:''}${rH}</div></div></div>`});box.innerHTML=h}
+
+let tmp={};
+function pk(mi,qi,oi){if(S.sub[mi])return;tmp[`${mi}-${qi}`]=oi;document.querySelectorAll(`[data-m="${mi}"][data-q="${qi}"]`).forEach(el=>{el.classList.remove('pk');if(+el.dataset.o===oi)el.classList.add('pk')});const all=M[mi].quiz.every((_,i2)=>tmp[`${mi}-${i2}`]!==undefined);const b=document.getElementById('sb'+mi);if(b)b.disabled=!all}
+
+function sub(mi){const mod=M[mi];let cc=0;mod.quiz.forEach((q,qi)=>{const k=`${mi}-${qi}`;S.ans[k]=tmp[k];if(tmp[k]===q.a)cc++});S.sub[mi]=true;if(cc>=2){S.xp=Math.min(S.xp+cc*30+10,500);S.streak++;if(!S.done.includes(mi))S.done.push(mi)}tmp={};save();buildAll();setTimeout(()=>{const qa=document.querySelector(`#m${mi} .qa`);if(qa)qa.scrollIntoView({behavior:'smooth',block:'center'})},200);if(cc>=2){setTimeout(()=>showBM(mi),700);if(cc===3)confetti()}if(S.done.length===M.length)setTimeout(showC,2000)}
+
+function retry(mi){M[mi].quiz.forEach((_,qi)=>delete S.ans[`${mi}-${qi}`]);delete S.sub[mi];tmp={};save();buildAll();sTo(mi)}
+function goN(ni){buildAll();setTimeout(()=>sTo(ni),200)}
+
+function updBar(){document.getElementById('xf').style.width=(S.xp/500*100)+'%';document.getElementById('xl').textContent=S.xp+' XP';document.getElementById('sl').textContent='🔥 '+S.streak;M.forEach((_,i)=>{if(S.done.includes(i))document.getElementById('pb'+i).classList.add('earned')});document.getElementById('pc').textContent=S.done.length+' / 5'}
+
+function showBM(mi){const m=M[mi];document.getElementById('bmi').textContent=m.bi;document.getElementById('bmt').textContent=m.bn+' Badge Earned!';document.getElementById('bmd').textContent=`You completed Module ${mi+1}: ${m.t}. Great work!`;document.getElementById('bov').classList.add('sh')}
+function closeBM(){document.getElementById('bov').classList.remove('sh')}
+
+function showC(){const c=document.getElementById('comp');c.classList.add('sh');c.scrollIntoView({behavior:'smooth'});document.getElementById('fxp').textContent=S.xp;document.getElementById('lxp').textContent=S.xp+' XP';document.getElementById('fbs').innerHTML=M.map(m=>`<div class="fb">${m.bi}</div>`).join('');confetti()}
+
+function confetti(){const c=document.createElement('div');c.className='cfb';document.body.appendChild(c);const cols=['#005ea2','#5eaed5','#e5a000','#00a91c','#d63e04','#8ecae6'];for(let i=0;i<100;i++){const p=document.createElement('div');p.className='cf';p.style.left=Math.random()*100+'%';p.style.background=cols[Math.floor(Math.random()*cols.length)];p.style.width=(7+Math.random()*9)+'px';p.style.height=(7+Math.random()*9)+'px';p.style.borderRadius=Math.random()>.5?'50%':'2px';p.style.animationDelay=Math.random()*2+'s';p.style.animationDuration=(2+Math.random()*2)+'s';c.appendChild(p)}setTimeout(()=>c.remove(),5000)}
+
+function obsFI(){const els=document.querySelectorAll('.fi:not(.vis)');const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:.12});els.forEach(el=>obs.observe(el))}
+
+function animBars(){const bars=document.querySelectorAll('.br-f[data-p]');const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.style.width=e.target.dataset.p+'%';obs.unobserve(e.target)}})},{threshold:.25});bars.forEach(b=>{b.style.width='0%';obs.observe(b)})}
+
+window.addEventListener('DOMContentLoaded',()=>{if(S.done.length>0||S.xp>0)begin();window.addEventListener('scroll',()=>{obsFI();animBars()},{passive:true})});
+</script>
+</body>
+</html>
