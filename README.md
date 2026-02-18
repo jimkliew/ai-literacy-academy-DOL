@@ -1,8 +1,8 @@
-# Federal AI Literacy Academy
+# AI Literacy Academy
 
 **Inspired by the U.S. Department of Labor's Artificial Intelligence Literacy Framework**
 
-A free, interactive, gamified learning platform covering the **5 Foundational Content Areas of AI Literacy** — built for Department of Labor staff and all federal employees.
+A free, interactive, gamified learning platform covering the **5 Foundational Content Areas of AI Literacy** — built for DOL staff and all federal employees.
 
 ## 🎯 What This Is
 
