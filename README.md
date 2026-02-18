@@ -47,11 +47,11 @@ Every fact and claim includes a citation to its source document and page number.
 
 ## 🏛️ Design
 
-The site follows the DOL.gov visual design system:
+The site visual design system:
 - **DOL Navy (#002d72)** and **DOL Blue (#005ea2)** color palette
-- **USWDS government banner** for official federal styling
-- **Public Sans + Merriweather** typography (U.S. Web Design System fonts)
-- **Framework accent blue (#5eaed5)** from the official AI Literacy Framework graphic
+- **USWDS government banner** for styling
+- **Public Sans + Merriweather** typography (Web Design System fonts)
+- **Framework accent blue (#5eaed5)** from the Framework graphic
 - Fully responsive for desktop, tablet, and mobile
 
 ## 📋 Technical Details
