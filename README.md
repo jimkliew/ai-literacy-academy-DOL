@@ -40,10 +40,6 @@ All content is sourced exclusively from official U.S. Department of Labor docume
 Every fact and claim includes a citation to its source document and page number.
 
 ## 🚀 How to Use
-
-### View Online
-Visit the GitHub Pages deployment: [https://jimkliew.github.io/ai-literacy-academy-DOL/](https://jimkliew.github.io/ai-literacy-academy-DOL/)
-
 ### Run Locally
 1. Clone this repository
 2. Open `index.html` in any web browser
